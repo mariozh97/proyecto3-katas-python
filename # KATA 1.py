@@ -1,0 +1,315 @@
+# KATA 1
+def frecuencia_letras(texto):
+    frecuencias = {}
+    for char in texto.lower().replace(" ", ""):
+        if char.isalpha():
+            frecuencias[char] = frecuencias.get(char, 0) + 1
+    return frecuencias
+
+# KATA 2
+def doble_valores(lista):
+    return list(map(lambda x: x * 2, lista))
+
+# KATA 3
+def palabras_con_objetivo(palabras, objetivo):
+    return [p for p in palabras if objetivo.lower() in p.lower()]
+
+# KATA 4
+def diferencia_listas(lista1, lista2):
+    min_len = min(len(lista1), len(lista2))
+    return list(map(lambda x, y: x - y, lista1[:min_len], lista2[:min_len]))
+
+# KATA 5
+def estado_aprobacion(numeros, nota_aprobado=5):
+    if not numeros:
+        return 0, "suspenso"
+    media = sum(numeros) / len(numeros)
+    estado = "aprobado" if media >= nota_aprobado else "suspenso"
+    return round(media, 2), estado
+
+# KATA 6
+def factorial_recursivo(n):
+    if n <= 1:
+        return 1
+    return n * factorial_recursivo(n - 1)
+
+# KATA 7
+def tuplas_a_strings(lista_tuplas):
+    return list(map(lambda t: ''.join(map(str, t)), lista_tuplas))
+
+# KATA 8
+def division_segura():
+    try:
+        num1 = float(input("Primer número: "))
+        num2 = float(input("Segundo número: "))
+        resultado = num1 / num2
+        print(f"División exitosa: {resultado}")
+        return resultado
+    except ValueError:
+        print("Error: Valor no numérico")
+    except ZeroDivisionError:
+        print("Error: División por cero")
+    return None
+
+# KATA 9
+def filtrar_mascotas(mascotas):
+    prohibidas = ["Mapache", "Tigre", "Serpiente Pitón", "Cocodrilo", "Oso"]
+    return list(filter(lambda m: m not in prohibidas, mascotas))
+
+# KATA 10
+class ListaVaciaError(Exception):
+    pass
+
+def promedio_lista(numeros):
+    if not numeros:
+        raise ListaVaciaError("La lista está vacía")
+    return sum(numeros) / len(numeros)
+
+# KATA 11
+def validar_edad():
+    try:
+        edad = int(input("Edad: "))
+        if edad < 0 or edad > 120:
+            raise ValueError("Edad fuera de rango")
+        print(f"Edad válida: {edad}")
+        return edad
+    except ValueError:
+        print("Error: Edad no válida")
+    return None
+
+# KATA 12
+def longitud_palabras(frase):
+    return list(map(len, frase.split()))
+
+# KATA 13
+def letras_mayus_minus(caracteres):
+    letras = sorted(set(filter(str.isalpha, caracteres)))
+    return list(map(lambda c: (c.upper(), c.lower()), letras))
+
+# KATA 14
+def palabras_comienzan_con(palabras, letra):
+    return list(filter(lambda p: p.lower().startswith(letra.lower()), palabras))
+
+# KATA 15
+sumar_tres = lambda lista: list(map(lambda x: x + 3, lista))
+
+# KATA 16
+def palabras_largas(texto, n):
+    return list(filter(lambda p: len(p) > n, texto.split()))
+
+# KATA 17
+from functools import reduce
+
+def lista_a_numero(digitos):
+    return reduce(lambda x, y: x * 10 + y, digitos)
+
+# KATA 18
+def estudiantes_excelentes(estudiantes):
+    return list(filter(lambda e: e['calificacion'] >= 90, estudiantes))
+
+# KATA 19
+filtrar_impares = lambda lista: list(filter(lambda x: x % 2 != 0, lista))
+
+# KATA 20
+def filtrar_enteros(lista_mixta):
+    return list(filter(lambda x: isinstance(x, int), lista_mixta))
+
+# KATA 21
+cubo = lambda x: x ** 3
+
+# KATA 22
+def producto_total(numeros):
+    return reduce(lambda x, y: x * y, numeros, 1)
+
+# KATA 23
+def concatenar_palabras(palabras):
+    return reduce(lambda x, y: x + " " + y, palabras) if palabras else ""
+
+# KATA 24
+def diferencia_total(numeros):
+    if not numeros:
+        return 0
+    return reduce(lambda x, y: x - y, numeros)
+
+# KATA 25
+def contar_caracteres(texto):
+    return len(texto)
+
+# KATA 26
+resto_division = lambda a, b: a % b
+
+# KATA 27
+def calcular_promedio(numeros):
+    return sum(numeros) / len(numeros) if numeros else 0
+
+# KATA 28
+def primer_duplicado(lista):
+    vistos = set()
+    for elemento in lista:
+        if elemento in vistos:
+            return elemento
+        vistos.add(elemento)
+    return None
+
+# KATA 29
+def enmascarar_variable(variable, mostrar_ultimos=4):
+    texto = str(variable)
+    if len(texto) <= mostrar_ultimos:
+        return texto
+    return "#" * (len(texto) - mostrar_ultimos) + texto[-mostrar_ultimos:]
+
+# KATA 30
+def son_anagramas(palabra1, palabra2):
+    return sorted(palabra1.lower().replace(" ", "")) == sorted(palabra2.lower().replace(" ", ""))
+
+# KATA 31
+def buscar_nombre():
+    nombres = input("Nombres (separados por comas): ").split(",")
+    nombres = [n.strip() for n in nombres]
+    buscar = input("Nombre a buscar: ").strip()
+    if buscar in nombres:
+        print("Nombre encontrado")
+    else:
+        raise ValueError("Nombre no encontrado")
+
+# KATA 32
+def buscar_puesto_empleado(nombre_completo, empleados):
+    for emp in empleados:
+        if emp['nombre'].lower() == nombre_completo.lower():
+            return emp['puesto']
+    return f"{nombre_completo} no trabaja aquí"
+
+# KATA 33
+sumar_listas = lambda lista1, lista2: list(map(lambda x, y: x + y, lista1, lista2))
+
+# KATA 34
+class Arbol:
+    def __init__(self):
+        self.tronco = 1
+        self.ramas = []
+    
+    def crecer_tronco(self):
+        self.tronco += 1
+    
+    def nueva_rama(self):
+        self.ramas.append(1)
+    
+    def crecer_ramas(self):
+        self.ramas = [l + 1 for l in self.ramas]
+    
+    def quitar_rama(self, posicion):
+        if 0 <= posicion < len(self.ramas):
+            self.ramas.pop(posicion)
+    
+    def info_arbol(self):
+        return {
+            "tronco": self.tronco,
+            "num_ramas": len(self.ramas),
+            "longitudes_ramas": self.ramas
+        }
+
+# KATA 35
+class UsuarioBanco:
+    def __init__(self, nombre, saldo, cuenta_corriente):
+        self.nombre = nombre
+        self.saldo = saldo
+        self.cuenta_corriente = cuenta_corriente
+    
+    def retirar_dinero(self, cantidad):
+        if cantidad > self.saldo:
+            raise ValueError("Saldo insuficiente")
+        self.saldo -= cantidad
+    
+    def transferir_dinero(self, cantidad, otro_usuario):
+        if cantidad > self.saldo:
+            raise ValueError("Saldo insuficiente")
+        if not otro_usuario.cuenta_corriente:
+            raise ValueError("Cuenta destino sin cuenta corriente")
+        self.saldo -= cantidad
+        otro_usuario.saldo += cantidad
+    
+    def agregar_dinero(self, cantidad):
+        self.saldo += cantidad
+
+# KATA 36
+def contar_palabras(texto):
+    palabras = texto.lower().split()
+    freq = {}
+    for p in palabras:
+        p = p.strip(".,!?;:")
+        if p:
+            freq[p] = freq.get(p, 0) + 1
+    return freq
+
+def reemplazar_palabras(texto, original, nueva):
+    return texto.replace(original, nueva)
+
+def eliminar_palabra(texto, palabra):
+    return texto.replace(palabra, "")
+
+def procesar_texto(texto, opcion, *args):
+    if opcion == "contar":
+        return contar_palabras(texto)
+    elif opcion == "reemplazar":
+        return reemplazar_palabras(texto, args[0], args[1])
+    elif opcion == "eliminar":
+        return eliminar_palabra(texto, args[0])
+    else:
+        raise ValueError("Opción no válida")
+
+# KATA 37
+def momento_dia(hora):
+    if 0 <= hora < 6:
+        return "noche"
+    elif 6 <= hora < 18:
+        return "día"
+    elif 18 <= hora <= 23:
+        return "tarde"
+    else:
+        raise ValueError("Hora no válida")
+
+# KATA 38
+def calificacion_texto(calificacion):
+    if 0 <= calificacion <= 69:
+        return "insuficiente"
+    elif 70 <= calificacion <= 79:
+        return "bien"
+    elif 80 <= calificacion <= 89:
+        return "muy bien"
+    elif 90 <= calificacion <= 100:
+        return "excelente"
+    else:
+        raise ValueError("Calificación no válida")
+
+# KATA 39
+import math
+
+def calcular_area(figura, datos):
+    if figura == "rectangulo":
+        base, altura = datos
+        return base * altura
+    elif figura == "circulo":
+        radio = datos[0]
+        return math.pi * radio ** 2
+    elif figura == "triangulo":
+        base, altura = datos
+        return (base * altura) / 2
+    else:
+        raise ValueError("Figura no válida")
+
+# KATA 40
+def tienda_online():
+    precio = float(input("Precio original: "))
+    tiene_cupon = input("¿Tiene cupón? (sí/no): ").lower()
+    
+    if tiene_cupon in ['si', 'sí', 'yes']:
+        descuento = float(input("Valor del cupón (%): "))
+        if 0 < descuento <= 100:
+            precio_final = precio * (1 - descuento/100)
+        else:
+            precio_final = precio
+    else:
+        precio_final = precio
+    
+    print(f"Precio final: {precio_final:.2f}")
+    return precio_final
